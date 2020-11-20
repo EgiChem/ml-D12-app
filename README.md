@@ -1,4 +1,6 @@
-# Prediction of binary diffusivities in supercritical carbon dioxide
+# ML-GB SC-CO2
+
+Prediction of binary diffusivities in supercritical carbon dioxide
 
 This tool estimates the binary diffusivity of a solute in supercritical carbon dioxide using a machine learning model trained with 4000 experimental data points from over 170 systems.
 
