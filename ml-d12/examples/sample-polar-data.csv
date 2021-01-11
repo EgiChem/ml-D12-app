@@ -1,0 +1,5 @@
+Solvent;Solute;T;viscosity;solute.M2;solute.Pc;solvent.M1;solvent.elj
+acetone;naphthalene;313.2;0.270582;128.174;40.5;58.08;332.97
+acetonitrile;methanol;298.2;0.386049118;32.042;80.9;41.053;652.53
+n-butanol;ammonia;298.15;2.605196559;17.031;113.3;74.123;435.8394
+ethanol;ammonia;323.15;0.697926876;17.031;113.3;46.069;1291.41

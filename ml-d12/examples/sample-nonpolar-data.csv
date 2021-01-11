@@ -1,0 +1,7 @@
+Solvent;Solute;T;viscosity;solute.M2;solute.Pc;solvent.M1
+cyclohexane;benzene;523.2;0.094578664;78.114;48.9;84.162
+cyclohexane;krypton;353.75;0.345020092;83.8;55;84.162
+cyclohexane;tetraethyltin;313.25;0.514527078;234.9544;25.7514;84.162
+n-dodecane;carbon dioxide;513.15;0.122893644;44.01;73.8;170.34
+n-dodecane;hydrogen;443.15;0.19027445;2.016;12.9;170.34
+n-heptane;n-hexadecane;374;0.19162;226.448;14.1;100.205
