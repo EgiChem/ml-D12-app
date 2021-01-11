@@ -1,9 +1,9 @@
-# Machine Learning models for the prediction of diffusivities
+# Machine Learning models for D12 prediction
 
 Prediction of binary diffusivities of solutes in:
 - supercritical carbon dioxide
 - polar solvents (except water) 
-- nonpolar systems (except supercritical carbon dioxide)
+- nonpolar solvents (except supercritical carbon dioxide)
 
 The machine learning models were trained with a database of 4000 experimental data points from over 170 systems. For more information check the following papers:
 
@@ -28,7 +28,7 @@ Select the program and provide the properties using their flags.
 
 | Solvent | Program | Required properties (unit) [-flag] |
 |-|-|-|
-| SC-CO2 | ml_scco2.py | Temperature (K) [-t]<br>Density (g/cm3) [-d]<br>Solute Molar Mass (g/mol) [-mm]<br>Solute Critical Pressure (bar) [-cp]<br>Solute Acentric Factor [-af] |
+| SC-CO2 | ml_scco2.py | Temperature (K) [-t]<br>Density (g/cm3) [-d]<br>Solute Molar Mass (g/mol) [-mm]<br>Solute Critical Pressure (bar) [-cp]<br>Solute Acentric Factor (-) [-af] |
 | Polar | ml_polar.py | Temperature (K) [-t]<br>Viscosity (cP) [-v]<br>Solute Molar Mass (g/mol) [-m2]<br>Solute Critical Pressure (bar) [-cp2]<br>Solvent Molar Mass (g/mol) [-m1]<br>Solvent Lennard-Jones Energy (K) -[e1] |
 | Nonpolar | ml_nonpolar.py | Temperature (K) [-t]<br>Viscosity (cP) [-v]<br>Solute Molar Mass (g/mol) [-m2]<br>Solute Critical Pressure (bar) [-cp2]<br>Solvent Molar Mass (g/mol) [-m1] |
 
