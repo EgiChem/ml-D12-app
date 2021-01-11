@@ -1,12 +1,53 @@
-# ML-GB SC-CO2
+# Machine Learning models for the prediction of diffusivities
 
-Prediction of binary diffusivities in supercritical carbon dioxide
+Prediction of binary diffusivities of solutes in:
+- supercritical carbon dioxide
+- polar solvents (except water) 
+- nonpolar systems (except supercritical carbon dioxide)
 
-This tool estimates the binary diffusivity of a solute in supercritical carbon dioxide using a machine learning model trained with 4000 experimental data points from over 170 systems.
+The machine learning models were trained with a database of 4000 experimental data points from over 170 systems. For more information check the following papers:
+
+- [José P.S. Aniceto, Bruno Zêzere, Carlos M. Silva. Machine learning models for the prediction of diffusivities in supercritical CO2 systems, Journal of Molecular Liquids (2021) 115281.](https://www.sciencedirect.com/science/article/pii/S0167732221000076)
+
+## Index
+  * [Quickstart](#quickstart)
+  * [Requirements](#requirements)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    + [Option 1) By providing the properties in order:](#option-1--by-providing-the-properties-in-order-)
+    + [Option 2) By specifying each property:](#option-2--by-specifying-each-property-)
+    + [Option 3) By specifying a CSV file with the input data:](#option-3--by-specifying-a-csv-file-with-the-input-data-)
+    + [Save results](#save-results)
+    + [Help](#help)
+  * [Citing](#citing)
+
+
+## Quickstart
+
+Select the program and provide the properties using their flags. 
+
+| Solvent | Program | Required properties (unit) [-flag] |
+|-|-|-|
+| SC-CO2 | ml_scco2.py | Temperature (K) [-t]<br>Density (g/cm3) [-d]<br>Solute Molar Mass (g/mol) [-mm]<br>Solute Critical Pressure (bar) [-cp]<br>Solute Acentric Factor [-af] |
+| Polar | ml_polar.py | Temperature (K) [-t]<br>Viscosity (cP) [-v]<br>Solute Molar Mass (g/mol) [-m2]<br>Solute Critical Pressure (bar) [-cp2]<br>Solvent Molar Mass (g/mol) [-m1]<br>Solvent Lennard-Jones Energy (K) -[e1] |
+| Nonpolar | ml_nonpolar.py | Temperature (K) [-t]<br>Viscosity (cP) [-v]<br>Solute Molar Mass (g/mol) [-m2]<br>Solute Critical Pressure (bar) [-cp2]<br>Solvent Molar Mass (g/mol) [-m1] |
+
+Example:
+
+```python
+python ml_scco2.py -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
+
+# Output:
+# Predicted diffusivities:
+# D12(1) = 5.81821846E-05 cm2/s
+```
+
+You can also calculate multiple points by providing the properties as a CSV file. See below.
+
 
 ## Requirements
 
-Python 3 and the following Python libraries are also required:
+Python 3 and the following Python libraries are required:
 - numpy
 - pandas
 - scikit-learn
@@ -31,7 +72,7 @@ Program is fully tested on:
 
 ### Option 1) By providing the properties in order:
 
-Call the program and provide the five properties as float in the following order:
+Call the program you desire and provide the properties in order. For istance, for the SC-CO2 program:
 1. Temperature (K)
 2. Density (g/cm3)
 3. Solute molecular mass (g/mol)
@@ -40,13 +81,13 @@ Call the program and provide the five properties as float in the following order
 
 
 ```python
-python ml_sc_co2 --properties YOUR_TEMPERATURE YOUR_DENSITY YOUR_MOLECULAR_MASS YOUR_CRITICAL_PRESSURE YOUR_ACENTRIC_FACTOR
+python ml_scco2.py --properties YOUR_TEMPERATURE YOUR_DENSITY YOUR_MOLECULAR_MASS YOUR_CRITICAL_PRESSURE YOUR_ACENTRIC_FACTOR
 ```
 
 Example:
 
 ```python
-python ml_sc_co2 --properties 313.15 0.830000647 430.71 8.45543 0.8071
+python ml_scco2.py --properties 313.15 0.830000647 430.71 8.45543 0.8071
 
 # Output:
 # Predicted diffusivities:
@@ -59,17 +100,17 @@ python ml_sc_co2 --properties 313.15 0.830000647 430.71 8.45543 0.8071
 In this case the order is irrelevant. 
 
 ```python
-python ml_sc_co2 --temperature YOUR_TEMPERATURE --density YOUR_DENSITY --molecularmass YOUR_MOLECULAR_MASS --criticalpressure YOUR_CRITICAL_PRESSURE --acentricfactor YOUR_ACENTRIC_FACTOR
+python ml_scco2.py --temperature YOUR_TEMPERATURE --density YOUR_DENSITY --molecularmass YOUR_MOLECULAR_MASS --criticalpressure YOUR_CRITICAL_PRESSURE --acentricfactor YOUR_ACENTRIC_FACTOR
 
 # OR using 
 
-python ml_sc_co2 -t YOUR_TEMPERATURE -d YOUR_DENSITY -mm YOUR_MOLECULAR_MASS -cp YOUR_CRITICAL_PRESSURE -af YOUR_ACENTRIC_FACTOR
+python ml_scco2.py -t YOUR_TEMPERATURE -d YOUR_DENSITY -mm YOUR_MOLECULAR_MASS -cp YOUR_CRITICAL_PRESSURE -af YOUR_ACENTRIC_FACTOR
 ```
 
 Example:
 
 ```python
-python ml_sc_co2 -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
+python ml_scco2.py -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
 
 # Output:
 # Predicted diffusivities:
@@ -77,19 +118,25 @@ python ml_sc_co2 -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
 ```
 
 
-### Option 3) By specifying a data CSV file with the input data:
+### Option 3) By specifying a CSV file with the input data:
 
-The CSV file must include at least five columns with the following names: `T`, `density`, `solute.M2`, `solute.Pc`, and `solute.w`. You can provide any number of points as rows.
+The CSV file must include at least five columns with the following headers: 
+
+| Case | SC-CO2 | Polar | Nonpolar |
+|-|-|-|-|
+| Properties/Headers | T<br>density<br>solute.M2<br>solute.Pc<br>solute.w | T<br>viscosity<br>solute.M2<br>solute.Pc<br>solvent.M1<br>solvent.elj | T<br>viscosity<br>solute.M2<br>solute.Pc<br>solvent.M1 |
+
+You can provide any number of points as rows. See the `examples` folder.
 
 ```python
-python ml_sc_co2 --csvfile YOUR_CSVFILE_PATH
+python ml_scco2.py --csvfile YOUR_CSVFILE_PATH
 ```
 
 Example:
 
 ```python
 # Using a file in the same directory with 3 points (rows)
-python ml_sc_co2 --csvfile data.csv
+python ml_scco2.py --csvfile sample-scco2-data.csv
 
 # Output:
 # Predicted diffusivities:
@@ -103,43 +150,19 @@ python ml_sc_co2 --csvfile data.csv
 Optionally you can use the `--save` or `-s` flag to save the results in an csv file.
 
 ```python
-python ml_sc_co2 --csvfile YOUR_CSVFILE_PATH --save
+python ml_scco2.py --csvfile YOUR_CSVFILE_PATH --save
 ```
 
 
 ### Help 
 
 ```python
-python ml_sc_co2 -h
-```
-
-```
-usage: predict [-h]
-               [-p TEMPERATURE DENSITY MOLECULAR_MASS CRITICAL_PRESSURE ACENTRIC_FACTOR]
-               [-t TEMPERATURE] [-d DENSITY] [-mm MOLECULARMASS]
-               [-cp CRITICALPRESSURE] [-af ACENTRICFACTOR] [-f CSVFILE] [-s]
-
-Supercritical carbon dioxide diffusivity estimator
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -p TEMPERATURE DENSITY MOLECULAR_MASS CRITICAL_PRESSURE ACENTRIC_FACTOR, --properties TEMPERATURE DENSITY MOLECULAR_MASS CRITICAL_PRESSURE ACENTRIC_FACTOR
-                        Temperature (K), Density (g/cm3), Solute molecular
-                        mass (g/mol), Solute critical pressure (bar), Solute
-                        acentric factor. Provided in this order.
-  -t TEMPERATURE, --temperature TEMPERATURE
-                        Temperature in K
-  -d DENSITY, --density DENSITY
-                        Density in g/cm3
-  -mm MOLECULARMASS, --molecularmass MOLECULARMASS
-                        Solute molecular mass in g/mol
-  -cp CRITICALPRESSURE, --criticalpressure CRITICALPRESSURE
-                        Solute critical pressure in bar
-  -af ACENTRICFACTOR, --acentricfactor ACENTRICFACTOR
-                        Solute acentric factor
-  -f CSVFILE, --csvfile CSVFILE
-                        Path to CSV file with input data
-  -s, --save            Save results to file
+python ml_scco2.py -h
 ```
 
 
+## Citing
+
+If you use the SC-CO2 program for a scientific publication please cite:
+
+- [José P.S. Aniceto, Bruno Zêzere, Carlos M. Silva. Machine learning models for the prediction of diffusivities in supercritical CO2 systems, Journal of Molecular Liquids (2021) 115281.](https://www.sciencedirect.com/science/article/pii/S0167732221000076)
