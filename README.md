@@ -40,13 +40,13 @@ Call the program and provide the five properties as float in the following order
 
 
 ```python
-python predict.py --properties YOUR_TEMPERATURE YOUR_DENSITY YOUR_MOLECULAR_MASS YOUR_CRITICAL_PRESSURE YOUR_ACENTRIC_FACTOR
+python ml_sc_co2 --properties YOUR_TEMPERATURE YOUR_DENSITY YOUR_MOLECULAR_MASS YOUR_CRITICAL_PRESSURE YOUR_ACENTRIC_FACTOR
 ```
 
 Example:
 
 ```python
-python predict.py --properties 313.15 0.830000647 430.71 8.45543 0.8071
+python ml_sc_co2 --properties 313.15 0.830000647 430.71 8.45543 0.8071
 
 # Output:
 # Predicted diffusivities:
@@ -59,17 +59,17 @@ python predict.py --properties 313.15 0.830000647 430.71 8.45543 0.8071
 In this case the order is irrelevant. 
 
 ```python
-python predict.py --temperature YOUR_TEMPERATURE --density YOUR_DENSITY --molecularmass YOUR_MOLECULAR_MASS --criticalpressure YOUR_CRITICAL_PRESSURE --acentricfactor YOUR_ACENTRIC_FACTOR
+python ml_sc_co2 --temperature YOUR_TEMPERATURE --density YOUR_DENSITY --molecularmass YOUR_MOLECULAR_MASS --criticalpressure YOUR_CRITICAL_PRESSURE --acentricfactor YOUR_ACENTRIC_FACTOR
 
 # OR using 
 
-python predict.py -t YOUR_TEMPERATURE -d YOUR_DENSITY -mm YOUR_MOLECULAR_MASS -cp YOUR_CRITICAL_PRESSURE -af YOUR_ACENTRIC_FACTOR
+python ml_sc_co2 -t YOUR_TEMPERATURE -d YOUR_DENSITY -mm YOUR_MOLECULAR_MASS -cp YOUR_CRITICAL_PRESSURE -af YOUR_ACENTRIC_FACTOR
 ```
 
 Example:
 
 ```python
-python predict.py -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
+python ml_sc_co2 -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
 
 # Output:
 # Predicted diffusivities:
@@ -82,14 +82,14 @@ python predict.py -t 313.15 -d 0.830000647 -mm 430.71 -cp 8.45543 -af 0.8071
 The CSV file must include at least five columns with the following names: `T`, `density`, `solute.M2`, `solute.Pc`, and `solute.w`. You can provide any number of points as rows.
 
 ```python
-python predict.py --csvfile YOUR_CSVFILE_PATH
+python ml_sc_co2 --csvfile YOUR_CSVFILE_PATH
 ```
 
 Example:
 
 ```python
 # Using a file in the same directory with 3 points (rows)
-python predict.py --csvfile data.csv
+python ml_sc_co2 --csvfile data.csv
 
 # Output:
 # Predicted diffusivities:
@@ -103,14 +103,14 @@ python predict.py --csvfile data.csv
 Optionally you can use the `--save` or `-s` flag to save the results in an csv file.
 
 ```python
-python predict.py --csvfile YOUR_CSVFILE_PATH --save
+python ml_sc_co2 --csvfile YOUR_CSVFILE_PATH --save
 ```
 
 
 ### Help 
 
 ```python
-python predict.py -h
+python ml_sc_co2 -h
 ```
 
 ```

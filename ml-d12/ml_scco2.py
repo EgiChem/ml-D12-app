@@ -7,7 +7,7 @@ import sys
 
 
 # Configuration variables
-PIPELINE_PATH = 'ml-models/sc-co2-pipeline.mod'
+PIPELINE_64_PATH = 'ml-models/ml-scco2-model-64.mod'
 MODEL_VARIABLES = ['T', 'density', 'solute.M2', 'solute.Pc', 'solute.w']
 OUTPUT_FILE_PATH = 'output.csv'
 
@@ -18,7 +18,13 @@ def get_full_path(ending):
 
 def load_pipeline():
     """Load pipeline (includes scaler and model)"""
-    return joblib.load(get_full_path(PIPELINE_PATH))
+    if sys.maxsize > 2**32:
+        # 64 bit Python version
+        return joblib.load(get_full_path(PIPELINE_64_PATH))
+    else:
+        # 32 bit Python version
+        return joblib.load(get_full_path(PIPELINE_32_PATH))
+    # return joblib.load(get_full_path(PIPELINE_PATH))
 
 
 def predict_D12(data_df):
@@ -91,7 +97,7 @@ def main():
         df = pd.DataFrame.from_dict(data)
 
     elif (args.temperature or args.density or args.molecularmass or args.criticalpressure or args.acentricfactor):
-        if not (args.temperature and args.density and args.molecularmass and args.criticalpressure and args.acentricfactand):
+        if not (args.temperature and args.density and args.molecularmass and args.criticalpressure and args.acentricfactor):
             parser.error('All parameters must be provided when specifying one of --temperature, --density, --molecularmass, --criticalpressure, or --acentricfactor.')
 
         # Create a single point Dataframe
@@ -100,7 +106,7 @@ def main():
             'density': [args.density],
             'solute.M2': [args.molecularmass],
             'solute.Pc': [args.criticalpressure],
-            'solute.w': [args.acentricfactand]
+            'solute.w': [args.acentricfactor]
         }
         df = pd.DataFrame.from_dict(data)
 
