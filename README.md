@@ -7,7 +7,8 @@ Prediction of binary diffusivities of solutes in:
 
 The machine learning models were trained with a database of 4000 experimental data points from over 170 systems. For more information check the following papers:
 
-- [José P.S. Aniceto, Bruno Zêzere, Carlos M. Silva. Machine learning models for the prediction of diffusivities in supercritical CO2 systems, Journal of Molecular Liquids (2021) 115281.](https://www.sciencedirect.com/science/article/pii/S0167732221000076)
+- [J.P.S. Aniceto, B. Zêzere, C.M. Silva. Machine learning models for the prediction of diffusivities in supercritical CO2 systems, Journal of Molecular Liquids (2021) 115281.](https://www.sciencedirect.com/science/article/pii/S0167732221000076)
+- [J.P.S. Aniceto, B. Zêzere, C.M. Silva. Predictive Models for the Binary Diffusion Coefficient at Infinite Dilution in Polar and Nonpolar Fluids, Materials 14 (2021) 542.](https://www.mdpi.com/1996-1944/14/3/542)
 
 ## Index
   * [Quickstart](#quickstart)
@@ -163,6 +164,9 @@ python ml_scco2.py -h
 
 ## Citing
 
-If you use the SC-CO2 program for a scientific publication please cite:
+If you use the SC-CO2 model/program for a scientific publication, please cite:
 
-- [José P.S. Aniceto, Bruno Zêzere, Carlos M. Silva. Machine learning models for the prediction of diffusivities in supercritical CO2 systems, Journal of Molecular Liquids (2021) 115281.](https://www.sciencedirect.com/science/article/pii/S0167732221000076)
+- [J.P.S. Aniceto, B. Zêzere, C.M. Silva. Machine learning models for the prediction of diffusivities in supercritical CO2 systems, Journal of Molecular Liquids (2021) 115281.](https://www.sciencedirect.com/science/article/pii/S0167732221000076)
+
+If you use the polar or nonpolar models/programs for a scientific publication, please cite:
+- [J.P.S. Aniceto, B. Zêzere, C.M. Silva. Predictive Models for the Binary Diffusion Coefficient at Infinite Dilution in Polar and Nonpolar Fluids, Materials 14 (2021) 542.](https://www.mdpi.com/1996-1944/14/3/542)
