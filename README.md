@@ -68,6 +68,19 @@ Program is fully tested on:
 4. Open the command line and run `pip install -r requirements.txt` to install the required libraries.
 5. You can now `cd` to the program folder and use it as described below.
 
+Alternativelly, using Anaconda:
+
+1. Download and install Anaconda from [anaconda.com](https://www.anaconda.com/products/individual).
+2. Lunch the Anaconda Prompt.
+3. Create a new environment by running: `conda create --name <env_name>`
+4. Activate the environment with `conda activate <env_name>`
+5. Install the required packages by running the following commands:
+```
+conda install scikit-learn=0.23.1
+conda install pandas=1.0.5
+conda install joblib=0.15.1
+```
+
 
 ## Usage
 
